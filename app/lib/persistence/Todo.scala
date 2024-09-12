@@ -33,4 +33,8 @@ class TodoRepository()(implicit val ec: ExecutionContext) extends SlickRepositor
     slave.run(todoTable.filter(_.id === id).result.headOption)
   }
 
+  def getTodoAll(): Future[Option[Todo]] = {
+    slave.run(todoTable.result.headOption)
+  }
+
 }
