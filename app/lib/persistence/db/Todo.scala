@@ -10,7 +10,7 @@ import java.time
 
 // TodoTable: Todoテーブルへのマッピングを行う
 //~~~~~~~~~~~~~~
-case class TodoTable(tag: Tag) extends Table[Todo](tag, "todo") {
+case class TodoTable(tag: Tag) extends Table[Todo](tag, "to_do") {
     // Columns
     /* @1 */ def id          = column[Todo.Id]       ("id",          UInt64, O.PrimaryKey, O.AutoInc)
     /* @3 */ def title       = column[String]        ("title", Utf8Char255)
