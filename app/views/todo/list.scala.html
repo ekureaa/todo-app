@@ -1,4 +1,17 @@
-@(vv: model.ViewValueCommon)
+@import lib.model.Todo
+@(vv: model.ViewValueCommon, todos:  Seq[Todo])
 @common.Default(vv) {
    <a>todoの全件表示</a>
+   <ul>
+      @for(todo <- todos) {
+         <li>@todo.title</li>
+         <ul>
+            <ul>
+               <li>@todo.content</li>
+               <li>@todo.status</li>
+               <li>@todo.category</li>
+            </ul>
+         </ul>
+      }
+   </ul>
 }
