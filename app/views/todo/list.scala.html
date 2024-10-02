@@ -6,11 +6,9 @@
       @for(todo <- todos) {
          <li>@todo.title</li>
          <ul>
-            <ul>
-               <li>@todo.content</li>
-               <li>@todo.status</li>
-               <li>@todo.category</li>
-            </ul>
+            <li>@todo.content</li>
+            <li>@todo.status.name</li>
+            <li>@todo.category</li>
          </ul>
       }
    </ul>
