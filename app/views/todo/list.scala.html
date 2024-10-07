@@ -9,15 +9,8 @@
          <ul>
             <li>@todo.content</li>
             <li>@todo.status.name</li>
-            <li>@todo.categoryId</li>
-            <li>@categories.find(_.id.toLong == todo.categoryId).map(_.name)</li>
+            <li>@categories.find(_.id == todo.categoryId).map(_.name)</li>
          </ul>
-      }
-   </ul>
-   <ul>
-      @for(category <- categories) {
-         <li>@category.name</li>
-         <li>@category.id</li>
       }
    </ul>
 }
