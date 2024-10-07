@@ -11,7 +11,7 @@ case class Todo(
   id:        Option[Todo.Id],
   title:     String,
   status:    Todo.Status,
-  category:  Todo.Category,
+  categoryId:  Long,
   content:   String,
   updatedAt: LocalDateTime = NOW,
   createdAt: LocalDateTime = NOW
@@ -33,10 +33,4 @@ object Todo {
     case object COMPRETED  extends Status(code = 2, name = "完了")
   }
 
-  sealed abstract class Category(val code: Short, val name: String) extends EnumStatus
-  object Category extends EnumStatus.Of[Category] {
-    case object FRONTEND       extends Category(code = 1, name = "フロントエンド")
-    case object BACKEND        extends Category(code = 2, name = "バックエンド")
-    case object INFRASTRUCTURE extends Category(code = 3, name = "インフラ")
-  }
 }

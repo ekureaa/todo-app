@@ -1,5 +1,6 @@
 @import lib.model.Todo
-@(vv: model.ViewValueCommon, todos:  Seq[Todo])
+@import lib.model.Category
+@(vv: model.ViewValueCommon, todos:  Seq[Todo], categories: Seq[Category])
 @common.Default(vv) {
    <a>todoの全件表示</a>
    <ul>
@@ -8,8 +9,15 @@
          <ul>
             <li>@todo.content</li>
             <li>@todo.status.name</li>
-            <li>@todo.category</li>
+            <li>@todo.categoryId</li>
+            <li>@categories.find(_.id.toLong == todo.categoryId).map(_.name)</li>
          </ul>
+      }
+   </ul>
+   <ul>
+      @for(category <- categories) {
+         <li>@category.name</li>
+         <li>@category.id</li>
       }
    </ul>
 }

@@ -7,6 +7,9 @@ import model.ViewValueHome
 import lib.model.Todo
 import lib.model.Todo.Id
 import lib.persistence.TodoRepository
+import lib.model.Category
+import lib.model.Category.Id
+import lib.persistence.CategoryRepository
 import scala.concurrent._
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -24,11 +27,13 @@ class TodoController @Inject()(val controllerComponents: ControllerComponents) e
     )
 
     val todoRepository = new TodoRepository()
+    val categoryRepository = new CategoryRepository()
 
-    val todoFuture = todoRepository.getTodoAll()
-
-    todoFuture.map { result =>
-      Ok(views.html.todo.list(vv, result))
+    for {
+      todoFuture <- todoRepository.getTodoAll()
+      categoryFuture <- categoryRepository.getCategoryAll()
+    } yield {
+      Ok(views.html.todo.list(vv, todoFuture, categoryFuture))
     }
 
   }
