@@ -9,7 +9,7 @@
          <ul>
             <li>@todo.content</li>
             <li>@todo.status.name</li>
-            <li>@categories.find(_.id == todo.categoryId).map(_.name)</li>
+            <li style="color: @categories.find(_.id == todo.categoryId).map(_.color.colorCode)">@categories.find(_.id == todo.categoryId).map(_.name).getOrElse("None")</li>
          </ul>
       }
    </ul>

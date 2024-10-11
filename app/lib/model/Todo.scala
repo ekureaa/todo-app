@@ -5,13 +5,15 @@ import ixias.util.EnumStatus
 
 import java.time.LocalDateTime
 
+import lib.model.Category
+
 // TODOを表すモデル
 //~~~~~~~~~~~~~~~~~~~~
 case class Todo(
   id:        Option[Todo.Id],
   title:     String,
   status:    Todo.Status,
-  categoryId:  Long,
+  categoryId:  Option[Category.Id],
   content:   String,
   updatedAt: LocalDateTime = NOW,
   createdAt: LocalDateTime = NOW
