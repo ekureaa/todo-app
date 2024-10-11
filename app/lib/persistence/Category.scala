@@ -15,7 +15,7 @@ import slick.dbio.Effect
 import slick.sql.FixedSqlAction
 import javax.inject._
 
-// UserRepository: UserTableへのクエリ発行を行うRepository層の定義
+// CategoryRepository: CategoryTableへのクエリ発行を行うRepository層の定義
 //~~~~~~~~~~~~~~~~~~~~~~
 class CategoryRepository @Inject()(implicit val ec: ExecutionContext) extends SlickRepository[Category.Id, Category] {
   val master: Database = DatabaseBuilder.fromHikariDataSource(
@@ -28,6 +28,9 @@ class CategoryRepository @Inject()(implicit val ec: ExecutionContext) extends Sl
   val categoryTable = TableQuery[CategoryTable]
 
 
+  /**
+    * Get All Category Data
+    */
   def getCategoryAll(): Future[Seq[Category]] = {
     slave.run(categoryTable.result)
   }

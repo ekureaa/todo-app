@@ -15,7 +15,7 @@ import slick.dbio.Effect
 import slick.sql.FixedSqlAction
 import javax.inject._
 
-// UserRepository: UserTableへのクエリ発行を行うRepository層の定義
+// TodoRepository: TodoTableへのクエリ発行を行うRepository層の定義
 //~~~~~~~~~~~~~~~~~~~~~~
 class TodoRepository @Inject()(implicit val ec: ExecutionContext) extends SlickRepository[Todo.Id, Todo] {
   val master: Database = DatabaseBuilder.fromHikariDataSource(
@@ -28,12 +28,15 @@ class TodoRepository @Inject()(implicit val ec: ExecutionContext) extends SlickR
   val todoTable = TableQuery[TodoTable]
 
   /**
-    * Get User Data
+    * Get Todo Data by Id
     */
   def getById(id: Todo.Id): Future[Option[Todo]] = {
     slave.run(todoTable.filter(_.id === id).result.headOption)
   }
 
+  /**
+    * Get All Todo Data
+    */
   def getTodoAll(): Future[Seq[Todo]] = {
     slave.run(todoTable.result)
   }

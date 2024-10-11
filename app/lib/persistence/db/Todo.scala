@@ -16,7 +16,7 @@ case class TodoTable(tag: Tag) extends Table[Todo](tag, "to_do") {
     /* @1 */ def id          = column[Todo.Id]       ("id",          UInt64, O.PrimaryKey, O.AutoInc)
     /* @3 */ def title       = column[String]        ("title", Utf8Char255)
     /* @5 */ def state       = column[Todo.Status]   ("state", UInt8)
-    /* @2 */ def categoryId  = column[Category.Id] ("category_id", UInt64)
+    /* @2 */ def categoryId  = column[Category.Id]   ("category_id", UInt64)
     /* @4 */ def body        = column[String]        ("body", Text)
     /* @6 */ def updatedAt   = column[LocalDateTime] ("updated_at",  TsCurrent)
     /* @7 */ def createdAt   = column[LocalDateTime] ("created_at",  Ts)

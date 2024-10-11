@@ -16,8 +16,8 @@ case class CategoryTable(tag: Tag) extends Table[Category](tag, "to_do_category"
     /* @2 */ def name      = column[String]          ("name", Utf8Char255)
     /* @3 */ def slug      = column[String]          ("slug", AsciiChar64)
     /* @4 */ def color     = column[Category.Color]  ("color", UInt8)
-    /* @5 */ def updatedAt   = column[LocalDateTime] ("updated_at",  TsCurrent)
-    /* @6 */ def createdAt   = column[LocalDateTime] ("created_at",  Ts)
+    /* @5 */ def updatedAt = column[LocalDateTime]   ("updated_at",  TsCurrent)
+    /* @6 */ def createdAt = column[LocalDateTime]   ("created_at",  Ts)
 
     // DB <=> Scala の相互のmapping定義
     def * = (id.?, name, slug, color, updatedAt, createdAt).<> (

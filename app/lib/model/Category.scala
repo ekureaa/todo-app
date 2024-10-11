@@ -5,7 +5,7 @@ import ixias.util.EnumStatus
 
 import java.time.LocalDateTime
 
-// TODOを表すモデル
+// Categoryを表すモデル
 //~~~~~~~~~~~~~~~~~~~~
 case class Category(
   id:        Option[Category.Id],
@@ -27,8 +27,8 @@ object Category {
 
   sealed abstract class Color(val code: Short, val colorCode: String) extends EnumStatus
   object Color extends EnumStatus.Of[Color] {
-    case object RED       extends Color(code = 1, colorCode="#ff0000")
-    case object BLUE      extends Color(code = 2, colorCode="#00ff00")
-    case object YELLOW    extends Color(code = 3, colorCode="#0000ff")
+    case object RED   extends Color(code = 1, colorCode="#ff0000")
+    case object GREEN extends Color(code = 2, colorCode="#00ff00")
+    case object BLUE  extends Color(code = 3, colorCode="#0000ff")
   }
 }

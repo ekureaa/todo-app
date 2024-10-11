@@ -5,16 +5,12 @@ import play.api.mvc._
 
 import model.ViewValueHome
 import lib.model.Todo
-import lib.model.Todo.Id
 import lib.persistence.TodoRepository
 import lib.model.Category
-import lib.model.Category.Id
 import lib.persistence.CategoryRepository
 import scala.concurrent._
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.Await
-import scala.util.Success
 
 @Singleton
 class TodoController @Inject()(
@@ -31,7 +27,7 @@ class TodoController @Inject()(
     )
 
     for {
-      todoFuture <- todoRepository.getTodoAll()
+      todoFuture     <- todoRepository.getTodoAll()
       categoryFuture <- categoryRepository.getCategoryAll()
     } yield {
       Ok(views.html.todo.list(vv, todoFuture, categoryFuture))
