@@ -13,10 +13,11 @@ import lib.model.Todo.Id
 import lib.persistence.db.TodoTable
 import slick.dbio.Effect
 import slick.sql.FixedSqlAction
+import javax.inject._
 
 // UserRepository: UserTableへのクエリ発行を行うRepository層の定義
 //~~~~~~~~~~~~~~~~~~~~~~
-class TodoRepository()(implicit val ec: ExecutionContext) extends SlickRepository[Todo.Id, Todo] {
+class TodoRepository @Inject()(implicit val ec: ExecutionContext) extends SlickRepository[Todo.Id, Todo] {
   val master: Database = DatabaseBuilder.fromHikariDataSource(
     new HikariDataSource(HikariConfigBuilder.default(DataSourceName("ixias.db.mysql://master/to_do")).build())
   )

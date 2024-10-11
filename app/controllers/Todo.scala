@@ -17,7 +17,11 @@ import scala.concurrent.Await
 import scala.util.Success
 
 @Singleton
-class TodoController @Inject()(val controllerComponents: ControllerComponents) extends BaseController {
+class TodoController @Inject()(
+  val controllerComponents: ControllerComponents,
+  todoRepository:           TodoRepository,
+  categoryRepository:       CategoryRepository
+  ) extends BaseController {
 
   def list() = Action.async { implicit req =>
     val vv = ViewValueHome(
@@ -25,9 +29,6 @@ class TodoController @Inject()(val controllerComponents: ControllerComponents) e
       cssSrc = Seq("main.css"),
       jsSrc  = Seq("main.js")
     )
-
-    val todoRepository = new TodoRepository()
-    val categoryRepository = new CategoryRepository()
 
     for {
       todoFuture <- todoRepository.getTodoAll()
