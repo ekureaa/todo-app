@@ -9,9 +9,9 @@
          <ul>
             <li>@todo.content</li>
             <li>@todo.status.name</li>
-            <li style="color: @categories.find(_.id == todo.categoryId).map(_.color.colorCode)">
-               @categories.find(_.id == todo.categoryId).map(_.name).getOrElse("None")
-            </li>
+            @defining(categories.find(_.id == todo.categoryId)) { category =>
+               <li style="color: @category.map(_.color.colorCode)">@category.map(_.name)</li>
+            }
          </ul>
       }
    </ul>
