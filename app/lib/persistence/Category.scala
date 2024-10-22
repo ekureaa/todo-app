@@ -31,8 +31,8 @@ class CategoryRepository @Inject()(implicit val ec: ExecutionContext) extends Sl
   /**
     * Get All Category Data
     */
-  def getCategoryAll(): Future[Seq[Category]] = {
-    slave.run(categoryTable.result)
+  def getCategoryAll(): Future[Seq[Category#EmbeddedId]] = {
+    slave.run(categoryTable.result).map(_.map(_.toEmbeddedId))
   }
 
 }

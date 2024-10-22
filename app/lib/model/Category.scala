@@ -4,6 +4,7 @@ import ixias.model._
 import ixias.util.EnumStatus
 
 import java.time.LocalDateTime
+import play.mvc.With
 
 // Categoryを表すモデル
 //~~~~~~~~~~~~~~~~~~~~

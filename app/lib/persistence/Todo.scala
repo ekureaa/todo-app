@@ -30,15 +30,15 @@ class TodoRepository @Inject()(implicit val ec: ExecutionContext) extends SlickR
   /**
     * Get Todo Data by Id
     */
-  def getById(id: Todo.Id): Future[Option[Todo]] = {
-    slave.run(todoTable.filter(_.id === id).result.headOption)
+  def getById(id: Todo.Id): Future[Option[Todo#EmbeddedId]] = {
+    slave.run(todoTable.filter(_.id === id).result.headOption).map(_.map(_.toEmbeddedId))
   }
 
   /**
     * Get All Todo Data
     */
-  def getTodoAll(): Future[Seq[Todo]] = {
-    slave.run(todoTable.result)
+  def getTodoAll(): Future[Seq[Todo#EmbeddedId]] = {
+    slave.run(todoTable.result).map(_.map(_.toEmbeddedId))
   }
 
 }
