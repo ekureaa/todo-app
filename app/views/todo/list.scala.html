@@ -1,0 +1,18 @@
+@import lib.model.Todo
+@import lib.model.Category
+@(vv: model.ViewValueCommon, todos:  Seq[Todo#EmbeddedId], categories: Seq[Category#EmbeddedId])
+@common.Default(vv) {
+   <a>todoの全件表示</a>
+   <ul>
+      @for(todo <- todos) {
+         <li>@todo.v.title</li>
+         <ul>
+            <li>@todo.v.content</li>
+            <li>@todo.v.status.name</li>
+            @defining(categories.find(_.v.id == todo.v.categoryId).map(_.v)) { category =>
+               <li style="color: @category.map(_.color.colorCode)">@category.map(_.name)</li>
+            }
+         </ul>
+      }
+   </ul>
+}
